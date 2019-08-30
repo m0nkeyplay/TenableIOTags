@@ -3,7 +3,7 @@ Let's get asset and vulnerability info from Tenable IO based on tags.
 
 These tags are an elusive thing promised by SEs for a while now and I found a use for them, when they work.
 
-Using some of the workbench API calls this will pull down assets based on a predefined tag and vulnerabilites associated with it.
+Using some of the workbench API calls this will pull down asset data based on a predefined tag and vulnerabilites associated with it.
 
 This script only requires keys (so access to the data) and requests.  No other modules are required.
 
@@ -23,4 +23,3 @@ This is v1.  Many things are hardcoded in.
                
 
 ![alt text](http://themonkeyplayground.com/imgs/vulnsByTag.PNG "Blurred Out")
- 
