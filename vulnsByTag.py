@@ -2,25 +2,24 @@
 #
 #  author:  	https://github.com/m0nkeyplay/
 #  file Date: 	2019-08-30 
+#  Updated:     2019-10-21
 #
 #  purpose: 	Get data from the Vulnerability Workbench on tagged assets
 #
-#  usage:       python vulnsByTag.py
+#  usage:       python vulnsByTag.py -d daysBack -t TagName -v TagValue
 #
 #  notes:      fill in the following variables as needed per environment
 #               log_name        <-- Where do you want the CSV to go?
 #               ak              <-- Access Key
 #               sk              <-- Secret Key 
 #               proxies         <-- If you use a proxy, set it here.
-#               daysBack        <-- How many days do you want to look back?  Default here is 7.
-#               tagName         <-- Tag Name (leave the tag.)
-#               tagValue        <-- Tag Value
 
 import requests
 import json
 import os
 import time
 import datetime
+import argparse
 import signal
 
 #logging.basicConfig(level=logging.DEBUG)
@@ -32,6 +31,12 @@ def handler(signum, frame):
 
 signal.signal(signal.SIGINT,handler)
 
+ap = argparse.ArgumentParser()
+ap.add_argument("-t", "--tag", required=True, help="Tag Name required")
+ap.add_argument("-v", "--value", required=True, help="Tag Valu required")
+ap.add_argument("-d", "--daysback", required=True, help="Days back required")
+args = vars(ap.parse_args())
+
 
 #   Variables - change as needed
 cwd = os.getcwd()
@@ -42,10 +47,10 @@ ak = ''
 sk = ''
 h_key_data = 'accessKey='+ak+'; secretKey='+sk
 # Change the days back below if you want more or less time for a host
-daysBack = "7"
+daysBack = int(args["daysback"])
 # Complete the tags - or even... make it dynamic????
-tagName = "tag."
-tagValue = ""
+tagName = "tag."+str(args["tag"].strip())
+tagValue = str(args["value"].strip())
 
 proxies = {}
 proxies['https']= ''
@@ -180,8 +185,9 @@ def parse_json(url):
 print("****************************************************")
 print("*                                                  *")
 print("*   Vulns by Tag from Tenable IO                   *")
-print("*   v1 everything is hardcoded and verbose         *")
-print("*   so you can take out the data you need.         *")
+print("*                           v1.1                   *")
+print("*   25K asset limit with tag search                *")
+print("*   That's not me, that's Tenable                  *")
 print("*                                                  *")
 print("*                                         |        *")
 print("*                                        /|\  ~es  *")
