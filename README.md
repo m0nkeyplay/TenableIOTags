@@ -7,9 +7,11 @@ Using some of the workbench API calls this will pull down asset data based on a 
 
 This script only requires keys (so access to the data) and requests.  No other modules are required.
 
-*usage* `python vulnsByTag.py`
+*usage* `python vulnsByTag.py -d DaysBack -t TagName -v TagValue`
 
-This is v1.  Many things are hardcoded in.
+This is v1.1 
+
+Less things are hardcoded in.
 
 ******notes:******      These variables are important.  Complete/change them.
 
@@ -17,9 +19,3 @@ This is v1.  Many things are hardcoded in.
                ak              <-- Access Key
                sk              <-- Secret Key
                proxies         <-- If you use a proxy, set it here.
-               daysBack        <-- How many days do you want to look back?  Default here is 7.
-               tagName         <-- Tag Name (leave the tag.)
-               tagValue        <-- Tag Value
-               
-
-![alt text](http://themonkeyplayground.com/imgs/vulnsByTag.PNG "Blurred Out")
